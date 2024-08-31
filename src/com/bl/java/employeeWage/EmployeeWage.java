@@ -5,7 +5,22 @@ public class EmployeeWage {
     public static final int IS_PART_TIME = 1;
     public static final int IS_FULL_TIME = 2;
 
-    public static int computeWage(String company, int EMP_RATE_PER_HOUR, int NUM_OF_WORKING_DAYS, int MAX_HRS_IN_MONTH)
+    private final String company;
+    private final int EMP_RATE_PER_HOUR;
+    private final int NUM_OF_WORKING_DAYS;
+    private final int MAX_HRS_IN_MONTH;
+    private int totalEmpWage;
+
+    // Constructor
+    public EmployeeWage(String company, int EMP_RATE_PER_HOUR, int NUM_OF_WORKING_DAYS, int MAX_HRS_IN_MONTH)
+    {
+        this.company = company;
+        this.EMP_RATE_PER_HOUR = EMP_RATE_PER_HOUR;
+        this.NUM_OF_WORKING_DAYS = NUM_OF_WORKING_DAYS;
+        this.MAX_HRS_IN_MONTH = MAX_HRS_IN_MONTH;
+    }
+
+    public void computeWage()
     {
         //Variables
         int empHrs = 0;
@@ -39,10 +54,14 @@ public class EmployeeWage {
 
         }
 
-        int totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
-        System.out.println("Total Emp Wage for Company: " + company + " is : " + totalEmpWage);
+         totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
 
-        return totalEmpWage;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Total Emp Wage for Company: " + company + " is: " + totalEmpWage;
     }
 
     public static void main(String[] args)
@@ -50,9 +69,19 @@ public class EmployeeWage {
         System.out.println("Welcome to Employee Wage Computation Program");
 
         // Calling Method for different company
-        computeWage("DMart", 20, 2, 10);
-        computeWage("Reliance", 10, 4, 20);
-        computeWage("Meta", 25, 6, 22);
+
+        EmployeeWage dMart = new EmployeeWage("DMart", 20, 2, 10);
+        EmployeeWage reliance = new EmployeeWage("Reliance", 10, 4, 20);
+        EmployeeWage meta = new EmployeeWage("Meta", 25, 6, 22);
+
+        dMart.computeWage();
+        System.out.println(dMart);
+
+        reliance.computeWage();
+        System.out.println(reliance);
+
+        meta.computeWage();
+        System.out.println(meta);
 
     }
 }
